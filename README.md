@@ -11,45 +11,40 @@ Internal tool for processing advisor email signatures and uploading them to S3.
    - Replaces `<img>` src URLs in the HTML with the new S3 CDN URLs
    - Uploads the final `email_signature.html` to `advisor-onboarding-documents/{advisor_email}/`
 
-## Setup
+## Running locally
 
 ### 1. Clone and install
 
 ```bash
+git clone <repository-url>
+cd signature
 npm install
 ```
 
 ### 2. Configure environment
 
+Copy the example env file and add your AWS credentials:
+
 ```bash
 cp .env.local.example .env.local
 ```
 
-The app uses the AWS SDK default credential chain (no credentials are passed in code). For local development, set credentials in `.env.local`. The IAM user or role needs `s3:PutObject` permission on both buckets:
+Edit `.env.local` and set:
+
+- `AWS_ACCESS_KEY_ID` — your AWS access key
+- `AWS_SECRET_ACCESS_KEY` — your AWS secret key
+
+The app uses the AWS SDK default credential chain (no credentials are passed in code). The IAM user or role must have `s3:PutObject` permission on both buckets:
 - `finny-cdn`
 - `advisor-onboarding-documents`
 
-### 3. Run locally
+### 3. Start the dev server
 
 ```bash
 npm run dev
 ```
 
-Open http://localhost:3000
-
-### 4. Deploy to Vercel
-
-```bash
-# Install Vercel CLI if you haven't
-npm i -g vercel
-
-# Deploy
-vercel
-```
-
-Add your environment variables in Vercel project settings (or use another credential source; the SDK resolves them automatically):
-- `AWS_ACCESS_KEY_ID`
-- `AWS_SECRET_ACCESS_KEY`
+The app will be available at **http://localhost:3000**. Use the form to paste signature HTML, upload images, and enter the advisor email and user ID.
 
 ## Image ordering
 
