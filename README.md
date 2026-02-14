@@ -25,7 +25,7 @@ npm install
 cp .env.local.example .env.local
 ```
 
-Edit `.env.local` and add your AWS credentials. The IAM user needs `s3:PutObject` permission on both buckets:
+The app uses the AWS SDK default credential chain (no credentials are passed in code). For local development, set credentials in `.env.local`. The IAM user or role needs `s3:PutObject` permission on both buckets:
 - `finny-cdn`
 - `advisor-onboarding-documents`
 
@@ -47,7 +47,7 @@ npm i -g vercel
 vercel
 ```
 
-Add your environment variables in Vercel project settings:
+Add your environment variables in Vercel project settings (or use another credential source; the SDK resolves them automatically):
 - `AWS_ACCESS_KEY_ID`
 - `AWS_SECRET_ACCESS_KEY`
 
