@@ -1,0 +1,77 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&display=swap');
+
+:root {
+  --finny-navy: #0f1729;
+  --finny-blue: #2563eb;
+  --finny-blue-light: #3b82f6;
+  --finny-slate: #1e293b;
+  --finny-border: #334155;
+  --finny-muted: #94a3b8;
+  --finny-surface: #1a2332;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'DM Sans', sans-serif;
+  background: var(--finny-navy);
+  color: #e2e8f0;
+  margin: 0;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+}
+::-webkit-scrollbar-track {
+  background: var(--finny-navy);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--finny-border);
+  border-radius: 3px;
+}
+
+/* Code/HTML input area */
+.html-input {
+  font-family: 'JetBrains Mono', 'Fira Code', monospace;
+  font-size: 13px;
+  line-height: 1.6;
+  tab-size: 2;
+}
+
+/* Drop zone styling */
+.drop-zone {
+  transition: all 0.2s ease;
+}
+.drop-zone.drag-over {
+  border-color: var(--finny-blue);
+  background: rgba(37, 99, 235, 0.08);
+}
+
+/* Signature preview */
+.signature-preview img {
+  max-width: 100%;
+  height: auto;
+}
+
+/* Toast animation */
+@keyframes slideIn {
+  from { transform: translateY(20px); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
+@keyframes slideOut {
+  from { transform: translateY(0); opacity: 1; }
+  to { transform: translateY(20px); opacity: 0; }
+}
+.toast-enter {
+  animation: slideIn 0.3s ease forwards;
+}
+.toast-exit {
+  animation: slideOut 0.3s ease forwards;
+}
